@@ -1,8 +1,6 @@
 #!/bin/sh
 set -e
-FILENAME_MATCH="/*" # not a regex anymore
-CUR_PATH=$(pwd)
-CUR_PATH=${CUR_PATH%FILENAME_REGEX}
+CUR_PATH=$(dirname "$0")
 
 NERD_FONT_NAME=""
 NERD_FONT_URL=""
