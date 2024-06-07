@@ -1,9 +1,10 @@
 #!/bin/sh
 set -e
+set -x
 CUR_PATH=$(dirname "$0")
 
-NERD_FONT_NAME=""
-NERD_FONT_URL=""
+NERD_FONT_NAME="FiraCode"
+NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/$NERD_FONT_NAME.zip"
 
 NEOVIM_CONFIG_URL=""
 
@@ -18,4 +19,4 @@ gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "$NER
 git clone $NEOVIM_CONFIG_URL ~/.config/nvim
 
 echo All done! You may need to restart NeoVim a few times
-nvim
+./nvim.appimage
