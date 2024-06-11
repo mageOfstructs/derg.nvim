@@ -34,7 +34,7 @@ curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.3
 tar Jxvf $CUR_PATH/kitty.txz # -C <some_dir> TODO: implement this
 echo All done! You may need to restart NeoVim a few times
 
-echo Also, if you accidentally closed the kitty terminal (you weren't supposed to do that). Just run the 'start_kitty.sh' script, provided for your convenience
+echo Also, if you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
 echo $UNHOLY_KITTY_COMMAND >> $CUR_PATH/start_kitty.sh
 chmod +x $CUR_PATH/start_kitty.sh
 
