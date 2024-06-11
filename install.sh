@@ -31,4 +31,4 @@ chmod +x $CUR_PATH/nvim.appimage
 curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
 tar Jxvf $CUR_PATH/kitty.txz # -C <some_dir> TODO: implement this
 echo All done! You may need to restart NeoVim a few times
-$CUR_PATH/bin/kitty --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
+$CUR_PATH/bin/kitty --start-as=fullscreen --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
