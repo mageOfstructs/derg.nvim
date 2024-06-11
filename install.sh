@@ -11,6 +11,8 @@ NEOVIM_CONFIG_USERNAME="mageOfstructs"
 NEOVIM_CONFIG_REPO_NAME="nvim-config"
 NEOVIM_CONFIG_URL="https://github.com/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_REPO_NAME"
 
+UNHOLY_KITTY_COMMAND="$CUR_PATH/bin/kitty --start-as=fullscreen --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
+
 export PATH="$PATH:$CUR_PATH"
 
 # download and install nerd font
@@ -31,4 +33,9 @@ chmod +x $CUR_PATH/nvim.appimage
 curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
 tar Jxvf $CUR_PATH/kitty.txz # -C <some_dir> TODO: implement this
 echo All done! You may need to restart NeoVim a few times
+
+echo Also, if you accidentally closed the kitty terminal (you weren't supposed to do that). Just run the 'start_kitty.sh' script, provided for your convenience
+echo $UNHOLY_KITTY_COMMAND >> $CUR_PATH/start_kitty.sh
+chmod +x $CUR_PATH/start_kitty.sh
+
 $CUR_PATH/bin/kitty --start-as=fullscreen --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
