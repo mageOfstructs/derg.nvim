@@ -16,7 +16,7 @@ export PATH="$PATH:$CUR_PATH"
 mkdir -p ~/.fonts/$NERD_FONT_NAME
 curl -sL $NERD_FONT_URL -o $CUR_PATH/$NERD_FONT_NAME.tar.xz
 tar xpvf $CUR_PATH/$NERD_FONT_NAME.tar.xz --acls -C ~/.fonts/$NERD_FONT_NAME
-chmod -R 644 ~/.fonts/*
+chmod 644 ~/.fonts/* # just as a sanity check
 
 # clone neovim config
 git clone $NEOVIM_CONFIG_URL ~/.config/nvim
