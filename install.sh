@@ -24,9 +24,11 @@ unzip -d ~/.fonts/$NERD_FONT_NAME $CUR_PATH/$NERD_FONT_NAME$NERD_FONT_EXT
 
 # clone neovim config
 git clone $NEOVIM_CONFIG_URL ~/.config/nvim
-
 curl -sL https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage -o $CUR_PATH/nvim.appimage
 chmod +x $CUR_PATH/nvim.appimage
+
+# Install kitty
+curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
+tar Jxvf $CUR_PATH/kitty.txz # -C <some_dir> TODO: implement this
 echo All done! You may need to restart NeoVim a few times
-ln -sf $CUR_PATH/nvim.appimage $CUR_PATH/nvim
-$CUR_PATH/nvim.appimage
+$CUR_PATH/bin/kitty --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
