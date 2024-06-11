@@ -1,0 +1,3 @@
+# Scary!
+rm -rf ~/.{config/nvim,fonts}
+echo No evidence left...
