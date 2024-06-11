@@ -18,7 +18,9 @@ mkdir -p ~/.fonts/$NERD_FONT_NAME
 curl -sL $NERD_FONT_URL -o $CUR_PATH/$NERD_FONT_NAME$NERD_FONT_EXT
 # tar xpvf $CUR_PATH/$NERD_FONT_NAME.tar.xz --acls -C ~/.fonts/$NERD_FONT_NAME
 unzip -d ~/.fonts/$NERD_FONT_NAME $CUR_PATH/$NERD_FONT_NAME$NERD_FONT_EXT
-chmod 644 ~/.fonts/* # just as a sanity check
+
+# THIS SINGLE COMMAND MUTILATES THE FONT FILES (which it doesn't even touch) BEYOND ANY TERMINAL'S RECOGNITION!!!
+#chmod 644 ~/.fonts/* # just as a sanity check
 
 # clone neovim config
 git clone $NEOVIM_CONFIG_URL ~/.config/nvim
