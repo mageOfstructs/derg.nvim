@@ -36,7 +36,7 @@ echo All done! You may need to restart NeoVim a few times
 
 echo Also, if you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
 echo $UNHOLY_KITTY_COMMAND >>$CUR_PATH/start_kitty.sh
-echo "alias nvim=$CUR_PATH/nvim.appimage" >>~/.bashrc
+echo "alias nvim=$PWD/nvim.appimage" >>~/.bashrc
 chmod +x $CUR_PATH/start_kitty.sh
 
 $CUR_PATH/bin/kitty --start-as=fullscreen --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
