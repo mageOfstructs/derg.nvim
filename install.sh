@@ -7,8 +7,8 @@ NERD_FONT_NAME="JetBrainsMono"
 NERD_FONT_EXT=".zip"
 NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/$NERD_FONT_NAME$NERD_FONT_EXT"
 
-NEOVIM_CONFIG_USERNAME="mageOfstructs"
-NEOVIM_CONFIG_REPO_NAME="nvim-config"
+NEOVIM_CONFIG_USERNAME="ThronKatze0"
+NEOVIM_CONFIG_REPO_NAME="neovim-config"
 NEOVIM_CONFIG_URL="https://github.com/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_REPO_NAME"
 
 UNHOLY_KITTY_COMMAND="$CUR_PATH/bin/kitty --start-as=fullscreen --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
@@ -35,7 +35,7 @@ tar Jxvf $CUR_PATH/kitty.txz # -C <some_dir> TODO: implement this
 echo All done! You may need to restart NeoVim a few times
 
 echo Also, if you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
-echo $UNHOLY_KITTY_COMMAND >> $CUR_PATH/start_kitty.sh
+echo $UNHOLY_KITTY_COMMAND >>$CUR_PATH/start_kitty.sh
 echo "alias nvim=$CUR_PATH/nvim.appimage" >>~/.bashrc
 chmod +x $CUR_PATH/start_kitty.sh
 
