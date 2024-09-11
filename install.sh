@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e
 set -x
 CUR_PATH=$(dirname "$0")
 
@@ -14,6 +13,7 @@ NEOVIM_CONFIG_URL="https://github.com/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_REP
 UNHOLY_KITTY_COMMAND="$CUR_PATH/bin/kitty --start-as=fullscreen --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
 
 export PATH="$PATH:$CUR_PATH"
+echo "PATH=$PATH" >>~/.bashrc
 
 # download and install nerd font
 mkdir -p ~/.fonts/$NERD_FONT_NAME
