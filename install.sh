@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x
+set -e
 CUR_PATH=$(dirname "$0")
 
 NERD_FONT_NAME="JetBrainsMono"
