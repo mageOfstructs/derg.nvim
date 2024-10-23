@@ -40,6 +40,8 @@ echo $UNHOLY_KITTY_COMMAND >>$CUR_PATH/start_kitty.sh
 echo "alias nvim=$PWD/nvim.appimage" >>~/.bashrc
 
 chmod +x $CUR_PATH/start_kitty.sh
+mkdir -p ~/.local/bin
+ln -sf $CUR_PATH/start_kitty.sh /home/$USER/.local/bin/ks
 
 # install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
