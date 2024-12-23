@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x
+set -e
 CUR_PATH=$(dirname "$0")
 
 NERD_FONT_NAME="JetBrainsMono"
@@ -32,11 +32,20 @@ chmod +x $CUR_PATH/nvim.appimage
 # Install kitty
 curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
 tar Jxvf $CUR_PATH/kitty.txz # -C <some_dir> TODO: implement this
+
 echo All done! You may need to restart NeoVim a few times
 
-echo Also, if you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
+echo If you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
 echo $UNHOLY_KITTY_COMMAND >>$CUR_PATH/start_kitty.sh
 echo "alias nvim=$PWD/nvim.appimage" >>~/.bashrc
-chmod +x $CUR_PATH/start_kitty.sh
 
-$CUR_PATH/bin/kitty --start-as=fullscreen --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
+chmod +x $CUR_PATH/start_kitty.sh
+mkdir -p ~/.local/bin
+ln -sf $(realpath $CUR_PATH/start_kitty.sh) /home/$USER/.local/bin/ks
+
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. "$HOME/.cargo/env"
+cargo install ripgrep
+
+# $CUR_PATH/bin/kitty --start-as=fullscreen --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
