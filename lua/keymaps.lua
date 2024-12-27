@@ -34,10 +34,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 vim.keymap.set("i", "<Tab>", '<CMD>lua require("intellitab").indent()<CR>')
 
-vim.keymap.set("n", "<F8>", "<CMD>:ToggleTerm size=40 direction=float<CR>")
-vim.keymap.set("t", "<F8>", "<CMD>:ToggleTerm size=40 direction=float<CR>")
-vim.keymap.set("i", "<F8>", "<CMD>:ToggleTerm size=40 direction=float<CR>")
-
 vim.api.nvim_set_keymap("i", "<Esc>", [[pumvisible() ? "\<C-e><Esc>" : "\<Esc>"]], { expr = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-c>", [[pumvisible() ? "\<C-e><C-c>" : "\<C-c>"]], { expr = true, silent = true })
 vim.api.nvim_set_keymap("i", "<BS>", [[pumvisible() ? "\<C-e><BS>" : "\<BS>"]], { expr = true, silent = true })
@@ -62,9 +58,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
--- [[ Debugging ]]
--- vim.keymap.set("n", "<leader>du", '<cmd>lua require("dapui").toggle()<CR>', { desc = "Toggle DAP UI" })
-vim.keymap.set("n", "<leader>dt", ":DapTerminate<CR>", { desc = "Terminate Debug Session" })
-vim.keymap.set("n", "<leader>dc", ":DapContinue<CR>", { desc = "Continue Debug Session" })
-vim.keymap.set("n", "<leader>do", ":DapStepOver<CR>", { desc = "Step over line" })

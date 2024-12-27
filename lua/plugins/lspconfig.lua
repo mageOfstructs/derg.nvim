@@ -6,7 +6,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		{ "j-hui/fidget.nvim", opts = {} },
-		{ "folke/lazydev.nvim", opts = {} },
+		{ "folke/lazydev.nvim" },
 		"saghen/blink.cmp",
 	},
 	opts = {
@@ -14,8 +14,11 @@ return {
 			lua_ls = {},
 			rust_analyzer = {},
 			clangd = {},
+			html = {},
 		},
 	},
+	event = { "BufReadPost", "BufNewFile" },
+	cmd = { "LspInfo", "LspInstall", "LspUninstall" },
 	config = function(_, opts)
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -123,4 +126,3 @@ return {
 		end
 	end,
 }
--- vim: ts=2 sts=2 sw=2 et
