@@ -31,13 +31,18 @@ return {
 		},
 
 		completion = {
-			list = { selection = "auto_insert" },
+			list = {
+				selection = function(ctx)
+					return ctx.mode == "cmdline" and "auto_insert" or "preselect"
+				end,
+				-- selection = "auto_insert",
+			},
 		},
 
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "markdown" },
+			default = { "lazydev", "lsp", "path", "snippets", "buffer", "markdown" },
 			providers = {
 				lazydev = {
 					name = "LazyDev",
@@ -73,5 +78,5 @@ return {
 			},
 		},
 	},
-	opts_extend = { "sources.default" },
+	-- opts_extend = { "sources.default" },
 }
