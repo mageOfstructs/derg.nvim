@@ -15,6 +15,21 @@ return {
 			rust_analyzer = {},
 			clangd = {},
 			html = {},
+			jdtls = {
+				settings = {
+					java = {
+						configuration = {
+							runtimes = {
+								{
+									name = "JavaOpenJDK-21",
+									path = "/usr/lib/jvm/java-21-openjdk/",
+									default = true,
+								},
+							},
+						},
+					},
+				},
+			},
 		},
 	},
 	event = { "BufReadPost", "BufNewFile" },
