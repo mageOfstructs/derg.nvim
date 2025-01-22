@@ -12,7 +12,7 @@ NEOVIM_CONFIG_USERNAME="mageOfStructs"
 NEOVIM_CONFIG_REPO_NAME="derg.nvim"
 NEOVIM_CONFIG_URL="https://codeberg.org/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_REPO_NAME"
 
-UNHOLY_KITTY_COMMAND="$CUR_PATH/bin/kitty --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
+UNHOLY_KITTY_COMMAND="$CUR_PATH/root/bin/kitty --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
 
 readonly LUA_VERSION="5.1.5"
 
@@ -38,17 +38,17 @@ chmod +x $CUR_PATH/nvim.appimage
 
 mkdir -p "$CUR_PATH/root"
 
+# Install kitty
+curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
+tar Jxvf $CUR_PATH/kitty.txz -C "$CUR_PATH/root"
+
 # Lua 5.1
 curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
 tar xf lua.tar.gz && cd lua-$LUA_VERSION
 make linux
 sed -i Makefile -e "s/\usr\/local/..\/root/"
 make install
-
-# Install kitty
-curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
-tar Jxvf $CUR_PATH/kitty.txz -C "$CUR_PATH/root"
-
+cd ..
 
 mkdir -p ~/.local
 ln -sf $CUR_PATH/root/bin /home/$USER/.local/bin
