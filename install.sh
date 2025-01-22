@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-CUR_PATH=$(dirname "$0")
+CUR_PATH=$(dirname $(readlink -f $0))
 
 NERD_FONT_NAME="JetBrainsMono"
 NERD_FONT_EXT=".zip"
@@ -14,8 +14,6 @@ NEOVIM_CONFIG_URL="https://codeberg.org/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_R
 
 UNHOLY_KITTY_COMMAND="$CUR_PATH/bin/kitty --start-as=fullscreen --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
 
-export PATH="$PATH:$CUR_PATH"
-echo "PATH=$PATH" >>~/.bashrc
 
 # download and install nerd font
 mkdir -p ~/.fonts/$NERD_FONT_NAME
@@ -35,19 +33,25 @@ chmod +x $CUR_PATH/nvim.appimage
 curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
 tar Jxvf $CUR_PATH/kitty.txz # -C <some_dir> TODO: implement this
 
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. "$HOME/.cargo/env"
+
+cargo install ripgrep yazi-cli yazi-fmt &
+
+mkdir -p ~/.local/bin
+export PATH="$PATH:/home/$USER/.local/bin"
+echo "PATH=$PATH" >>~/.bashrc
+echo "alias nvim=$PWD/nvim.appimage" >>~/.bashrc
+
+chmod +x $CUR_PATH/start_kitty.sh
+ln -sf $(realpath $CUR_PATH/start_kitty.sh) /home/$USER/.local/bin/ks
+
 echo All done! You may need to restart NeoVim a few times
 
 echo If you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
 echo $UNHOLY_KITTY_COMMAND >>$CUR_PATH/start_kitty.sh
-echo "alias nvim=$PWD/nvim.appimage" >>~/.bashrc
 
-chmod +x $CUR_PATH/start_kitty.sh
-mkdir -p ~/.local/bin
-ln -sf $(realpath $CUR_PATH/start_kitty.sh) /home/$USER/.local/bin/ks
 
-# install rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-. "$HOME/.cargo/env"
-cargo install ripgrep
 
 # $CUR_PATH/bin/kitty --start-as=fullscreen --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
