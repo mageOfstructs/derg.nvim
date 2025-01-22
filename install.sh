@@ -12,8 +12,15 @@ NEOVIM_CONFIG_USERNAME="mageOfStructs"
 NEOVIM_CONFIG_REPO_NAME="derg.nvim"
 NEOVIM_CONFIG_URL="https://codeberg.org/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_REPO_NAME"
 
-UNHOLY_KITTY_COMMAND="$CUR_PATH/bin/kitty --start-as=fullscreen --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
+UNHOLY_KITTY_COMMAND="$CUR_PATH/bin/kitty --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
 
+readonly LUA_VERSION="5.1.5"
+
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. "$HOME/.cargo/env"
+
+cargo install ripgrep yazi-cli yazi-fmt &
 
 # download and install nerd font
 mkdir -p ~/.fonts/$NERD_FONT_NAME
@@ -29,29 +36,30 @@ git clone $NEOVIM_CONFIG_URL ~/.config/nvim
 curl -sL $NVIM_APPIMAGE_URL -o $CUR_PATH/nvim.appimage
 chmod +x $CUR_PATH/nvim.appimage
 
+mkdir -p "$CUR_PATH/root"
+
+# Lua 5.1
+curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
+tar xf lua.tar.gz && cd lua-$LUA_VERSION
+make linux
+sed -i Makefile -e "s/\usr\/local/..\/root/"
+make install
+
 # Install kitty
 curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
-tar Jxvf $CUR_PATH/kitty.txz # -C <some_dir> TODO: implement this
+tar Jxvf $CUR_PATH/kitty.txz -C "$CUR_PATH/root"
 
-# install rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-. "$HOME/.cargo/env"
 
-cargo install ripgrep yazi-cli yazi-fmt &
-
-mkdir -p ~/.local/bin
+mkdir -p ~/.local
+ln -sf $CUR_PATH/root/bin /home/$USER/.local/bin
 export PATH="$PATH:/home/$USER/.local/bin"
 echo "PATH=$PATH" >>~/.bashrc
 echo "alias nvim=$PWD/nvim.appimage" >>~/.bashrc
 
 chmod +x $CUR_PATH/start_kitty.sh
-ln -sf $(realpath $CUR_PATH/start_kitty.sh) /home/$USER/.local/bin/ks
+ln -sf $CUR_PATH/start_kitty.sh /home/$USER/.local/bin/ks
 
 echo All done! You may need to restart NeoVim a few times
 
 echo If you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
 echo $UNHOLY_KITTY_COMMAND >>$CUR_PATH/start_kitty.sh
-
-
-
-# $CUR_PATH/bin/kitty --start-as=fullscreen --hold -o "font_family=JetBrainsMono Nerd Font" $CUR_PATH/nvim.appimage
