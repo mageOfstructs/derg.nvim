@@ -6,6 +6,8 @@ NERD_FONT_NAME="JetBrainsMono"
 NERD_FONT_EXT=".zip"
 NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/$NERD_FONT_NAME$NERD_FONT_EXT"
 
+NVIM_APPIMAGE_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
+
 NEOVIM_CONFIG_USERNAME="mageOfStructs"
 NEOVIM_CONFIG_REPO_NAME="derg.nvim"
 NEOVIM_CONFIG_URL="https://codeberg.org/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_REPO_NAME"
@@ -26,7 +28,7 @@ unzip -d ~/.fonts/$NERD_FONT_NAME $CUR_PATH/$NERD_FONT_NAME$NERD_FONT_EXT
 
 # clone neovim config
 git clone $NEOVIM_CONFIG_URL ~/.config/nvim
-curl -sL https://github.com/neovim/neovim/releases/nightly/nvim.appimage -o $CUR_PATH/nvim.appimage
+curl -sL $NVIM_APPIMAGE_URL -o $CUR_PATH/nvim.appimage
 chmod +x $CUR_PATH/nvim.appimage
 
 # Install kitty
