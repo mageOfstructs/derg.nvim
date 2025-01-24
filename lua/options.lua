@@ -10,9 +10,15 @@ vim.g.loaded_ruby_provider = 0
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.g.tabstop = 4
-vim.g.shiftwidth = 4
-vim.g.expandtab = true
+local o = vim.o
+
+o.expandtab = true -- expand tab input with spaces characters
+o.smartindent = true -- syntax aware indentations for newline inserts
+o.tabstop = 4 -- num of space characters per tab
+o.shiftwidth = 0 -- spaces per indentation level
+-- vim.g.softtabstop = -1
+-- vim.g.shiftround = true
+-- vim.g.autoindent = true
 
 vim.g.have_nerd_font = true
 
