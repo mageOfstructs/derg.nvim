@@ -55,6 +55,7 @@ sed -i Makefile -e "s/DESTDIR =/DESTDIR = ..\/root/"
 make install
 export C_INCLUDE_PATH="$CUR_PATH/root/usr/local/include"
 export CPLUS_INCLUDE_PATH="$C_INCLUDE_PATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUR_PATH/root/lib:$CUR_PATH/root/usr/local/lib"
 cd ..
 
 # Lua 5.1
