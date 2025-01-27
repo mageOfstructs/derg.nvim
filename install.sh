@@ -53,17 +53,22 @@ cd readline
 make
 sed -i Makefile -e "s/DESTDIR =/DESTDIR = ..\/root/"
 make install
+cd ..
+
+# Setup library stuff
 export C_INCLUDE_PATH="$CUR_PATH/root/usr/local/include"
 export CPLUS_INCLUDE_PATH="$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUR_PATH/root/lib:$CUR_PATH/root/usr/local/lib"
 export DT_RUNPATH="$LD_LIBRARY_PATH"
-cd ..
+ln -s $CUR_PATH/root/lib/libncursesw.so.6 $CUR_PATH/root/lib/libncurses.so
+ln -s $CUR_PATH/root/lib/libreadline.so.8 $CUR_PATH/root/lib/libreadline.so
 
 # Lua 5.1
 curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
 tar xf lua.tar.gz && cd lua-$LUA_VERSION
 make linux
 sed -i Makefile -e "s/\/usr\/local/..\/root/"
+sed -i src/Makefile -e "s/-lreadline/-L \/home\/$USER\/neohtl\/root\/lib -L \/home\/$USER\/neohtl\/root\/usr\/local\/lib -lreadline/"
 make install
 cd ..
 
