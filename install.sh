@@ -60,6 +60,9 @@ export C_INCLUDE_PATH="$CUR_PATH/root/usr/local/include"
 export CPLUS_INCLUDE_PATH="$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUR_PATH/root/lib:$CUR_PATH/root/usr/local/lib"
 export DT_RUNPATH="$LD_LIBRARY_PATH"
+echo "C_INCLUDE_PATH=\"$C_INCLUDE_PATH\"" >> ~/.bashrc
+echo "CPLUS_INCLUDE_PATH=\"$CPLUS_INCLUDE_PATH\"" >> ~/.bashrc
+echo "LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\"" >> ~/.bashrc
 ln -s $CUR_PATH/root/lib/libncursesw.so.6 $CUR_PATH/root/lib/libncurses.so
 ln -s $CUR_PATH/root/lib/libreadline.so.8 $CUR_PATH/root/lib/libreadline.so
 
@@ -85,3 +88,4 @@ ln -sf $CUR_PATH/start_kitty.sh /home/$USER/.local/bin/ks
 echo All done! You may need to restart NeoVim a few times
 
 echo If you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
+bash
