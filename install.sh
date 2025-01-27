@@ -18,10 +18,10 @@ UNHOLY_KITTY_COMMAND="$CUR_PATH/root/bin/kitty --hold -o \"font_family=JetBrains
 readonly LUA_VERSION="5.1.5"
 
 # install rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-. "$HOME/.cargo/env"
+#curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+#. "$HOME/.cargo/env"
 
-cargo install ripgrep yazi-cli yazi-fmt &
+#cargo install ripgrep yazi-cli yazi-fmt &
 
 # download and install nerd font
 mkdir -p ~/.fonts/$NERD_FONT_NAME
