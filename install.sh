@@ -1,6 +1,7 @@
 #!/bin/sh
 #set -e
 CUR_PATH=$(dirname $(readlink -f $0))
+SED_CUR_PATH="$(echo "$CUR_PATH" | sed "s/\//\\\\\//g")"
 
 NERD_FONT_NAME="JetBrainsMono"
 NERD_FONT_EXT=".zip"
@@ -69,9 +70,9 @@ ln -s $CUR_PATH/root/lib/libreadline.so.8 $CUR_PATH/root/lib/libreadline.so
 # Lua 5.1
 curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
 tar xf lua.tar.gz && cd lua-$LUA_VERSION
-sed -i src/Makefile -e "s/-lreadline/-L \/home\/$USER\/neohtl\/root\/lib -L \/home\/$USER\/neohtl\/root\/usr\/local\/lib -lreadline/"
+sed -i src/Makefile -e "s/-lreadline/-L $SED_CUR_PATH\/root\/lib -L $SED_CUR_PATH\/root\/usr\/local\/lib -lreadline/"
 make linux
-sed -i Makefile -e "s/\/usr\/local/\/home\/$USER\/neohtl\/root/"
+sed -i Makefile -e "s/\/usr\/local/$SED_CUR_PATH\/root/"
 make install
 cd ..
 
