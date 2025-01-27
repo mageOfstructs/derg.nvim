@@ -42,6 +42,13 @@ mkdir -p "$CUR_PATH/root"
 curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
 tar Jxvf $CUR_PATH/kitty.txz -C "$CUR_PATH/root"
 
+git clone https://github.com/gnu-mirror-unofficial/readline
+cd readline
+./configure
+make
+sed -i Makefile -e "s/DESTDIR =/DESTDIR = ..\/root/"
+cd ..
+
 # Lua 5.1
 curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
 tar xf lua.tar.gz && cd lua-$LUA_VERSION
