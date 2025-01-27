@@ -76,6 +76,13 @@ sed -i Makefile -e "s/\/usr\/local/$SED_CUR_PATH\/root/"
 make install
 cd ..
 
+curl -sL https://luarocks.github.io/luarocks/releases/luarocks-3.11.1.tar.gz -o $CUR_PATH/luarocks.tar.gz
+tar xf luarocks.tar.gz && cd luarocks-3.11.1
+./configure --with-lua-include=$CUR_PATH/root/usr/local/include
+make
+DESTDIR="$CUR_PATH/root" make install
+cd ..
+
 mkdir -p ~/.local
 ln -sf $CUR_PATH/root/bin /home/$USER/.local/bin
 export PATH="$PATH:/home/$USER/.local/bin"
