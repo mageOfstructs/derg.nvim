@@ -73,13 +73,13 @@ curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
 tar xf lua.tar.gz && cd lua-$LUA_VERSION
 sed -i src/Makefile -e "s/-lreadline/-L $SED_CUR_PATH\/root\/lib -L $SED_CUR_PATH\/root\/usr\/local\/lib -lreadline/"
 make linux
-sed -i Makefile -e "s/\/usr\/local/$SED_CUR_PATH\/root/"
+sed -i Makefile -e "s/\/usr\/local/$SED_CUR_PATH\/root\/usr/"
 make install
 cd ..
 
 curl -sL https://luarocks.github.io/luarocks/releases/luarocks-3.11.1.tar.gz -o $CUR_PATH/luarocks.tar.gz
 tar xf luarocks.tar.gz && cd luarocks-3.11.1
-./configure --with-lua-include=$CUR_PATH/root/usr/local/include
+./configure --with-lua-include=$CUR_PATH/root/usr/include
 make
 DESTDIR="$CUR_PATH/root" make install
 cd ..
