@@ -34,7 +34,7 @@ unzip -d ~/.fonts/$NERD_FONT_NAME $CUR_PATH/$NERD_FONT_NAME$NERD_FONT_EXT
 
 # clone neovim config
 git clone $NEOVIM_CONFIG_URL ~/.config/nvim
-if [[ $? -eq 128 ]]; then
+if test $? -eq 128 ; then
     git clone $ALT_NEOVIM_CONFIG_URL ~/.config/nvim
 fi
 
