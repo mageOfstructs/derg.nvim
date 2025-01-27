@@ -66,6 +66,7 @@ echo "CPLUS_INCLUDE_PATH=\"$CPLUS_INCLUDE_PATH\"" >> ~/.bashrc
 echo "LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\"" >> ~/.bashrc
 ln -s $CUR_PATH/root/lib/libncursesw.so.6 $CUR_PATH/root/lib/libncurses.so
 ln -s $CUR_PATH/root/lib/libreadline.so.8 $CUR_PATH/root/lib/libreadline.so
+export PATH="$PATH:$CUR_PATH/root/bin"
 
 # Lua 5.1
 curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
