@@ -68,7 +68,7 @@ curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
 tar xf lua.tar.gz && cd lua-$LUA_VERSION
 sed -i src/Makefile -e "s/-lreadline/-L \/home\/$USER\/neohtl\/root\/lib -L \/home\/$USER\/neohtl\/root\/usr\/local\/lib -lreadline/"
 make linux
-sed -i Makefile -e "s/\/usr\/local/..\/root/"
+sed -i Makefile -e "s/\/usr\/local/\/home\/$USER\/neohtl\/root/"
 make install
 cd ..
 
