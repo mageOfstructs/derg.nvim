@@ -52,6 +52,7 @@ cd readline
 ./configure
 make
 sed -i Makefile -e "s/DESTDIR =/DESTDIR = ..\/root/"
+make install
 cd ..
 
 # Lua 5.1
