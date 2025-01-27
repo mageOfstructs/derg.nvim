@@ -61,7 +61,7 @@ cd ..
 curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
 tar xf lua.tar.gz && cd lua-$LUA_VERSION
 make linux
-sed -i Makefile -e "s/\usr\/local/..\/root/"
+sed -i Makefile -e "s/\/usr\/local/..\/root/"
 make install
 cd ..
 
