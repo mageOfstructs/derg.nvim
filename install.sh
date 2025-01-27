@@ -78,10 +78,10 @@ export PATH="$PATH:/home/$USER/.local/bin"
 echo "PATH=$PATH" >>~/.bashrc
 echo "alias nvim=$PWD/nvim.appimage" >>~/.bashrc
 
+echo $UNHOLY_KITTY_COMMAND >>$CUR_PATH/start_kitty.sh
 chmod +x $CUR_PATH/start_kitty.sh
 ln -sf $CUR_PATH/start_kitty.sh /home/$USER/.local/bin/ks
 
 echo All done! You may need to restart NeoVim a few times
 
 echo If you accidentally closed the kitty terminal \(you weren\'t supposed to do that\). Just run the \'start_kitty.sh\' script, provided for your convenience
-echo $UNHOLY_KITTY_COMMAND >>$CUR_PATH/start_kitty.sh
