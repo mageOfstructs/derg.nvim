@@ -11,6 +11,7 @@ NVIM_APPIMAGE_URL="https://github.com/neovim/neovim/releases/download/nightly/nv
 NEOVIM_CONFIG_USERNAME="mageOfStructs"
 NEOVIM_CONFIG_REPO_NAME="derg.nvim"
 NEOVIM_CONFIG_URL="https://codeberg.org/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_REPO_NAME"
+ALT_NEOVIM_CONFIG_URL="https://github.com/$NEOVIM_CONFIG_USERNAME/$NEOVIM_CONFIG_REPO_NAME"
 
 UNHOLY_KITTY_COMMAND="$CUR_PATH/root/bin/kitty --hold -o \"font_family=JetBrainsMono Nerd Font\" $CUR_PATH/nvim.appimage"
 
@@ -33,6 +34,10 @@ unzip -d ~/.fonts/$NERD_FONT_NAME $CUR_PATH/$NERD_FONT_NAME$NERD_FONT_EXT
 
 # clone neovim config
 git clone $NEOVIM_CONFIG_URL ~/.config/nvim
+if [[ $? -eq 128 ]]; then
+    git clone $ALT_NEOVIM_CONFIG_URL ~/.config/nvim
+fi
+
 curl -sL $NVIM_APPIMAGE_URL -o $CUR_PATH/nvim.appimage
 chmod +x $CUR_PATH/nvim.appimage
 
