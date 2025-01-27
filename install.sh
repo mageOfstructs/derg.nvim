@@ -53,6 +53,7 @@ cd readline
 make
 sed -i Makefile -e "s/DESTDIR =/DESTDIR = ..\/root/"
 make install
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUR_PATH/root/usr/local/include"
 cd ..
 
 # Lua 5.1
