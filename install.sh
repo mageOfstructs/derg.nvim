@@ -42,11 +42,14 @@ fi
 curl -sL $NVIM_APPIMAGE_URL -o $CUR_PATH/nvim.appimage
 chmod +x $CUR_PATH/nvim.appimage
 
-mkdir -p "$CUR_PATH/root"
+mkdir -p "$CUR_PATH/root/usr"
 
 # Install kitty
 curl -sL https://github.com/kovidgoyal/kitty/releases/download/v0.35.1/kitty-0.35.1-x86_64.txz -o $CUR_PATH/kitty.txz
-tar Jxvf $CUR_PATH/kitty.txz -C "$CUR_PATH/root"
+tar Jxvf $CUR_PATH/kitty.txz -C "$CUR_PATH/root/usr"
+
+ln -s "$CUR_PATH/root/usr/bin" "$CUR_PATH/root/bin"
+ln -s "$CUR_PATH/root/usr/lib" "$CUR_PATH/root/lib"
 
 git clone https://github.com/gnu-mirror-unofficial/readline
 cd readline
@@ -67,7 +70,6 @@ echo "LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\"" >> ~/.bashrc
 ln -s $CUR_PATH/root/lib/libncursesw.so.6 $CUR_PATH/root/lib/libncurses.so
 ln -s $CUR_PATH/root/lib/libreadline.so.8 $CUR_PATH/root/lib/libreadline.so
 export PATH="$PATH:$CUR_PATH/root/bin"
-ln -s $CUR_PATH/root/lib $CUR_PATH/root/usr/lib
 
 # Lua 5.1
 curl -sL https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz -o $CUR_PATH/lua.tar.gz
