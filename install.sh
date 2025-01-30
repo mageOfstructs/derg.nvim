@@ -7,7 +7,7 @@ NERD_FONT_NAME="JetBrainsMono"
 NERD_FONT_EXT=".zip"
 NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/$NERD_FONT_NAME$NERD_FONT_EXT"
 
-NVIM_APPIMAGE_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
+NVIM_APPIMAGE_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage"
 
 NEOVIM_CONFIG_USERNAME="mageOfStructs"
 NEOVIM_CONFIG_REPO_NAME="derg.nvim"
@@ -67,7 +67,7 @@ export DT_RUNPATH="$LD_LIBRARY_PATH"
 echo "C_INCLUDE_PATH=\"$C_INCLUDE_PATH\"" >> ~/.bashrc
 echo "CPLUS_INCLUDE_PATH=\"$CPLUS_INCLUDE_PATH\"" >> ~/.bashrc
 echo "LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\"" >> ~/.bashrc
-echo "LUA_PATH=\"?;?.lua;/usr/local/lua/?/?.lua;$CUR_PATH/root/usr/local/lua/?/?.lua\""
+echo "LUA_PATH=\"?;?.lua;/usr/local/lua/?/?.lua;$CUR_PATH/root/usr/local/share/lua/?/?.lua\""
 ln -s $CUR_PATH/root/lib/libncursesw.so.6 $CUR_PATH/root/lib/libncurses.so
 ln -s $CUR_PATH/root/lib/libreadline.so.8 $CUR_PATH/root/lib/libreadline.so
 export PATH="$PATH:$CUR_PATH/root/bin"
