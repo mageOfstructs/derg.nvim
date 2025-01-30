@@ -64,10 +64,10 @@ export C_INCLUDE_PATH="$CUR_PATH/root/usr/local/include"
 export CPLUS_INCLUDE_PATH="$C_INCLUDE_PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUR_PATH/root/lib:$CUR_PATH/root/usr/local/lib"
 export DT_RUNPATH="$LD_LIBRARY_PATH"
-echo "C_INCLUDE_PATH=\"$C_INCLUDE_PATH\"" >> ~/.bashrc
-echo "CPLUS_INCLUDE_PATH=\"$CPLUS_INCLUDE_PATH\"" >> ~/.bashrc
-echo "LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\"" >> ~/.bashrc
-echo "LUA_PATH=\"?;?.lua;/usr/local/lua/?/?.lua;$CUR_PATH/root/usr/local/share/lua/5.1/?.lua\"" >> ~/.bashrc
+echo "export C_INCLUDE_PATH=\"$C_INCLUDE_PATH\"" >> ~/.bashrc
+echo "export CPLUS_INCLUDE_PATH=\"$CPLUS_INCLUDE_PATH\"" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\"" >> ~/.bashrc
+echo "export LUA_PATH=\"?;?.lua;/usr/local/lua/?/?.lua;$CUR_PATH/root/usr/local/share/lua/5.1/?.lua\"" >> ~/.bashrc
 ln -s $CUR_PATH/root/lib/libncursesw.so.6 $CUR_PATH/root/lib/libncurses.so
 ln -s $CUR_PATH/root/lib/libreadline.so.8 $CUR_PATH/root/lib/libreadline.so
 export PATH="$PATH:$CUR_PATH/root/bin"
