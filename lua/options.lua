@@ -13,8 +13,9 @@ vim.g.maplocalleader = "\\"
 local o = vim.o
 
 o.expandtab = true -- expand tab input with spaces characters
+o.autoindent = true
 o.smartindent = true -- syntax aware indentations for newline inserts
-o.tabstop = 4 -- num of space characters per tab
+o.tabstop = 2 -- num of space characters per tab
 o.shiftwidth = 0 -- spaces per indentation level
 -- vim.g.softtabstop = -1
 -- vim.g.shiftround = true

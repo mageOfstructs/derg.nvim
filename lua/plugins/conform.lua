@@ -21,6 +21,7 @@ return {
 			c = { "clang-format" },
 			cpp = { "clang-format" },
 			markdown = { "markdownlint" },
+			javascript = { "biome" },
 		},
 	},
 }

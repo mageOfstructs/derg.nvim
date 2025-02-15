@@ -15,6 +15,8 @@ return {
 			rust_analyzer = {},
 			clangd = {},
 			html = {},
+			denols = {},
+			zls = {},
 			jdtls = {
 				settings = {
 					java = {
