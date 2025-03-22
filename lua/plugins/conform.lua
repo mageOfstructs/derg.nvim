@@ -22,6 +22,8 @@ return {
 			cpp = { "clang-format" },
 			markdown = { "markdownlint" },
 			javascript = { "biome" },
+			html = { "prettier" },
+			-- sql = { "sql-formatter" },
 		},
 	},
 }
