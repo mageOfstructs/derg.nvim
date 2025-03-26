@@ -48,6 +48,7 @@ return {
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
 				"rust-analyzer",
+				"node-debug2-adapter",
 				"codelldb",
 			},
 		})
@@ -86,5 +87,23 @@ return {
 				args = {},
 			},
 		}
+		dap.configurations.javascript = {
+      			{
+	        		type = 'node2',
+	        		request = 'launch',
+	        		name = 'Launch file',
+	        		program = '${file}',
+	        		cwd = '${workspaceFolder}',
+      			},
+     			{
+	        		type = 'node2',
+	        		request = 'attach',
+	        		name = 'Attach to Node app',
+	        		address = 'localhost',
+	        		port = 9229,
+	        		cwd = '${workspaceFolder}',
+	        		restart = true,
+      			},
+    		}
 	end,
 }
