@@ -8,6 +8,9 @@ return {
 			-- Disable "format_on_save lsp_fallback" for languages that don't
 			-- have a well standardized coding style. You can add additional
 			-- languages here or re-enable it for the disabled ones.
+			if vim.api.nvim_buf_get_name(bufnr):find("clones/contributions", 0, true) then
+				return nil -- don't destroy the formating of others
+			end
 			local disable_filetypes = { c = true, cpp = true }
 			return {
 				timeout_ms = 500,
