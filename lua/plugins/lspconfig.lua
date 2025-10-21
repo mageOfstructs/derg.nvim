@@ -2,7 +2,8 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
-		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+		{ "williamboman/mason.nvim" }, -- NOTE: Must be loaded before dependants
+		-- "nvim-java/nvim-java",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		{ "j-hui/fidget.nvim", opts = {} },
@@ -15,23 +16,12 @@ return {
 			rust_analyzer = {},
 			clangd = {},
 			html = {},
-			denols = {},
+			-- denols = {},
+			ts_ls = {},
 			zls = {},
-			jdtls = {
-				settings = {
-					java = {
-						configuration = {
-							runtimes = {
-								{
-									name = "JavaOpenJDK-21",
-									path = "/usr/lib/jvm/java-21-openjdk/",
-									default = true,
-								},
-							},
-						},
-					},
-				},
-			},
+			jdtls = {},
+			awk_ls = {},
+			-- sqls = {},
 		},
 	},
 	event = { "BufReadPost", "BufNewFile" },
@@ -130,16 +120,16 @@ return {
 				end
 			end,
 		})
-		require("mason").setup()
+		-- require("mason").setup()
 
 		local ensure_installed = vim.tbl_keys(opts.servers or {})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-		local lspconfig = require("lspconfig")
+
 		for server, config in pairs(opts.servers) do
-			-- passing config.capabilities to blink.cmp merges with the capabilities in your
-			-- `opts[server].capabilities, if you've defined it
+			-- add whatever blink wants to add to configure LSP servers
 			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-			lspconfig[server].setup(config)
+			vim.lsp.config(server, config)
+			vim.lsp.enable(server)
 		end
 	end,
 }
