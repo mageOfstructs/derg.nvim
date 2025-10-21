@@ -48,16 +48,16 @@ return {
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
 				"rust-analyzer",
-				"node-debug2-adapter",
+				"js-debug-adapter",
 				"codelldb",
 			},
 		})
 
 		-- Basic debugging keymaps, feel free to change to your liking!
 		-- vim.keymap.set("n", "dc", dap.continue, { desc = "Debug: Start/Continue" })
-		vim.keymap.set("n", "di", dap.step_into, { desc = "Debug: Step Into" })
-		vim.keymap.set("n", "do", dap.step_over, { desc = "Debug: Step Over" })
-		vim.keymap.set("n", "dv", dap.step_out, { desc = "Debug: Step Out" })
+		vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Debug: Step Into" })
+		vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Debug: Step Over" })
+		vim.keymap.set("n", "<leader>dv", dap.step_out, { desc = "Debug: Step Out" })
 		-- vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
 		vim.keymap.set("n", "<leader>B", function()
 			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
@@ -86,24 +86,38 @@ return {
 				stopOnEntry = false,
 				args = {},
 			},
+			{
+				name = "Launch Nightfury Test",
+				type = "codelldb",
+				request = "launch",
+				program = function()
+					return "cargo test " .. vim.fn.input("Test Name") .. " -- --show-output"
+					-- return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+				end,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = false,
+				args = {},
+			},
 		}
-		dap.configurations.javascript = {
-      			{
-	        		type = 'node2',
-	        		request = 'launch',
-	        		name = 'Launch file',
-	        		program = '${file}',
-	        		cwd = '${workspaceFolder}',
-      			},
-     			{
-	        		type = 'node2',
-	        		request = 'attach',
-	        		name = 'Attach to Node app',
-	        		address = 'localhost',
-	        		port = 9229,
-	        		cwd = '${workspaceFolder}',
-	        		restart = true,
-      			},
-    		}
+
+		require("dap").adapters["pwa-node"] = {
+			type = "server",
+			host = "localhost",
+			port = "${port}",
+			executable = {
+				command = "node",
+				-- 💀 Make sure to update this path to point to your installation
+				args = { "/usr/lib/js-debug/dapDebugServer.js", "${port}" },
+			},
+		}
+		require("dap").configurations.javascript = {
+			{
+				type = "pwa-node",
+				request = "launch",
+				name = "Launch file",
+				program = "${file}",
+				cwd = "${workspaceFolder}",
+			},
+		}
 	end,
 }
