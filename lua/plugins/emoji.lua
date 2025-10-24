@@ -1,4 +1,4 @@
 return {
-	dir = "/home/jason/clones/custom-emojis.nvim/",
+	"mageOfStructs/custom-emojis.nvim",
 	opts = {},
 }
